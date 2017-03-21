@@ -14,6 +14,8 @@ class VirtualMachine(PoolElement):
         'action': 'vm.action',
         'migrate': 'vm.migrate',
         'deploy': 'vm.deploy',
+        'undeploy': 'vm.undeploy',
+        'undeploy-hard': 'vm.undeploy_hard',
         'savedisk': 'vm.savedisk',
         'delete': 'vm.delete',
         'chown': 'vm.chown',
@@ -43,7 +45,9 @@ class VirtualMachine(PoolElement):
         'DONE': 'done',
         'FAILED': 'fail',
         'POWEROFF': 'poff',
-        'UNDEPLOYED': 'udep'
+        'UNDEPLOYED': 'udep',
+        'CLONING': 'clon',
+        'CLONING_FAILURE': 'fail'
     }
 
     LCM_STATE = ['LCM_INIT', 'PROLOG', 'BOOT', 'RUNNING', 'MIGRATE', 'SAVE_STOP', 'SAVE_SUSPEND',
@@ -189,6 +193,18 @@ class VirtualMachine(PoolElement):
            instantiated.
         """
         self.client.call(self.METHODS['deploy'], self.id, host_id)
+
+    def undeploy(self):
+        """
+        undeploy the instance of the given vmid
+        """
+        self._action("undeploy")
+
+    def undeploy_hard(self):
+        """
+        undeploy hard the instance of the given vmid
+        """
+        self._action("undeploy-hard")
 
     def migrate(self, dest_host):
         """
