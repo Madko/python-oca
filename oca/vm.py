@@ -334,7 +334,8 @@ class VirtualMachine(PoolElement):
         One of: INIT, PENDING, HOLD, ACTIVE, STOPPED, SUSPENDED,
         DONE, FAILED, POWEROFF, UNDEPLOYED
         """
-        return self.VM_STATE[int(self.state)]
+        if int(self.state) < len(self.VM_STATE): return self.VM_STATE[int(self.state)]
+        else: return "UNKOWN_STATE"
 
     @property
     def short_state(self):
