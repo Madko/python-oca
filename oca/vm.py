@@ -31,7 +31,7 @@ class VirtualMachine(PoolElement):
     POWEROFF = 8
     UNDEPLOYED = 9
     VM_STATE = ['INIT', 'PENDING', 'HOLD', 'ACTIVE', 'STOPPED',
-                'SUSPENDED', 'DONE', 'FAILED', 'POWEROFF', 'UNDEPLOYED']
+                'SUSPENDED', 'DONE', 'FAILED', 'POWEROFF', 'UNDEPLOYED', 'CLONING', 'CLONING_FAILURE']
 
     SHORT_VM_STATES = {
         'INIT': 'init',
